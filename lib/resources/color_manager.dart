@@ -9,9 +9,10 @@ class ColorsManager{
   static Color lightBlue = const Color(0xff7e85ec);
   static Color error = const Color(0xffe61634);
   static Color white = const Color(0xfff7f7f7);
+  static Color whiteMore = const Color(0xffffffff);
   static Color black = const Color(0xff000000);
   static Color lightBlack = const Color(0xff383636);
-  static Color primary = const Color(0xffc08552);
-  static Color lightPrimary = const Color(0xffddbea9);
+  static Color primary = const Color(0xff5381b2);
+  static Color lightPrimary = const Color(0xff91b2d5);
 
 }

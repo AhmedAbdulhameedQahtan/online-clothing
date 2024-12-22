@@ -10,7 +10,7 @@ class AppThemes {
     brightness: Brightness.light,
     scaffoldBackgroundColor: ColorsManager.white,
     colorScheme: const ColorScheme.light().copyWith(
-      surface: ColorsManager.white,
+      surface: ColorsManager.whiteMore,
       onSurface: ColorsManager.white,
 
     ),
@@ -69,7 +69,7 @@ class AppThemes {
 
       headlineLarge: getSimpoldStyle(color: ColorsManager.darkGray, fontSize: FontSize.s16,),
 
-      headlineMedium: getRegularStyle(color: ColorsManager.darkGray, fontSize: FontSize.s14,),
+      headlineMedium: getRegularStyle(color: ColorsManager.white, fontSize: FontSize.s12,),
 
       titleLarge: getRegularStyle(color: ColorsManager.primary),
       titleMedium: getMedumStyle(color: ColorsManager.primary, fontSize: FontSize.s16),
@@ -143,8 +143,8 @@ class AppThemes {
     scaffoldBackgroundColor: ColorsManager.lightBlack,
 
     colorScheme: const ColorScheme.dark().copyWith(
-      surface: ColorsManager.lightBlack,
-      onSurface: ColorsManager.gray,
+      surface: ColorsManager.whiteMore,
+      onSurface: ColorsManager.lightBlack,
     ),
 
     //main colors theme
@@ -198,7 +198,7 @@ class AppThemes {
       displayMedium: getLightStyle(color: ColorsManager.darkGray, fontSize: FontSize.s16),
       displaySmall: getLightStyle(color: ColorsManager.darkGray, fontSize: FontSize.s16),
       headlineLarge: getSimpoldStyle(color: ColorsManager.lightGray, fontSize: FontSize.s16,),
-      headlineMedium: getRegularStyle(color: ColorsManager.darkGray, fontSize: FontSize.s14,),
+      headlineMedium: getRegularStyle(color: ColorsManager.white, fontSize: FontSize.s12,),
       titleLarge: getRegularStyle(color: ColorsManager.primary),
       titleMedium: getMedumStyle(color: ColorsManager.primary, fontSize: FontSize.s16),
       titleSmall: getRegularStyle(color: ColorsManager.white),
