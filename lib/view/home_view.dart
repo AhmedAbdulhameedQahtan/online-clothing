@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_clothing/resources/color_manager.dart';
 import 'package:online_clothing/resources/values_manager.dart';
+import 'package:online_clothing/view/add_product_view.dart';
 import 'package:online_clothing/view/details_view.dart';
 import '../controllers/api_controller.dart';
 
@@ -37,6 +38,23 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
+  Future<void> fetchCategoryData(String data) async {
+    try {
+      final productData = await apiController.fetchProductsCategory(data);
+      setState(() {
+        products = productData;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+  
   @override
   void initState() {
     super.initState();
@@ -63,6 +81,15 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: ColorsManager.primary,
         elevation: 0,
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddProductPage()));
+            }, child: const Text("Add Product"))
+          ],
+        ),
+      ),
       body: isLoading
           ?  Center(child: CircularProgressIndicator(color: ColorsManager.primary,))
           : products == null
@@ -82,6 +109,9 @@ class _HomeViewState extends State<HomeView> {
                           },
                         ),
                       ),
+                    ),
+                    TextButton(
+                        onPressed: (){fetchData();}, child: Text("ALL Products",style: Theme.of(context).textTheme.headlineMedium,)
                     ),
                     Expanded(
                       child: Padding(
@@ -111,9 +141,12 @@ class _HomeViewState extends State<HomeView> {
   Widget _buildCategoryChip(String label) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      child:Chip(
-          label: Text(label,style: Theme.of(context).textTheme.headlineMedium,),
-        backgroundColor: ColorsManager.primary,
+      child:InkWell(
+        onTap: (){fetchCategoryData(label);},
+        child: Chip(
+            label: Text(label,style: Theme.of(context).textTheme.headlineMedium,),
+          backgroundColor: ColorsManager.primary,
+        ),
       )
     );
   }
@@ -182,62 +215,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-// =============
-// ListView.builder(
-// itemCount: products!.length,
-// itemBuilder: (context, index) {
-// final product = products[index];
-// print("product==============$product");
-// print("product==============${product['title']}");
-// return Container(
-// width: size.width,
-// height: size.height / 3,
-// margin: EdgeInsets.all(10),
-// decoration: BoxDecoration(
-// color: ColorsManager.white,
-// borderRadius: const BorderRadius.all(
-// Radius.circular(10)),
-// ),
-// child: Column(
-// children: [
-// Text(
-// 'category:',
-// style: Theme.of(context)
-//     .textTheme
-//     .titleLarge,
-// ),
-// Text(
-// product["category"],
-// style:
-// Theme.of(context).textTheme.bodyLarge,
-// ),
-// Container(
-// color: ColorsManager.lightBlue,
-// padding: const EdgeInsets.all(5),
-// child: Image.network(
-// product["image"],
-// height: 50,
-// ),
-// ),
-// const SizedBox(height: 20),
-// Text(
-// 'title:',
-// style: Theme.of(context)
-//     .textTheme
-//     .titleLarge,
-// ),
-// Padding(
-// padding:
-// EdgeInsets.only(left: 15, right: 15),
-// child: Text(
-// product["title"],
-// style: Theme.of(context)
-//     .textTheme
-//     .bodyLarge,
-// ),
-// ),
-// ],
-// ),
-// );
-// }),

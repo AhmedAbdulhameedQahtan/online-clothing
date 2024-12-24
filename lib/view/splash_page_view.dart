@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:online_clothing/view/home_view.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
+import '../resources/font_manager.dart';
 import '../resources/strings_manager.dart';
 
 class SplashPageView extends StatefulWidget {
@@ -84,7 +85,7 @@ class _SplashPageViewState extends State<SplashPageView> {
                           .textTheme
                           .titleSmall
                           ?.copyWith(
-                        fontSize: 24,
+                        fontSize: FontSize.s24,
                       )
                   ),
                   const SizedBox(
